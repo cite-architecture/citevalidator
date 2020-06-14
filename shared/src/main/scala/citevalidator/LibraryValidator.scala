@@ -9,12 +9,12 @@ import edu.holycross.shot.scm._
 
 
 import wvlet.log._
-import wvlet.log.LogFormatter.SourceCodeLogFormatter
+//import wvlet.log.LogFormatter.SourceCodeLogFormatter
 
 import scala.scalajs.js.annotation._
 
 @JSExportAll object LibraryValidator  extends LogSupport {
-  Logger.setDefaultLogLevel(LogLevel.INFO)
+  //Logger.setDefaultLogLevel(LogLevel.INFO)
 
 
 /*

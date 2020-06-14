@@ -6,6 +6,7 @@ import edu.holycross.shot.scm._
 
 import org.scalatest.FlatSpec
 
+//import wvlet.log._
 
 class DseVerificationSpec extends FlatSpec {
 

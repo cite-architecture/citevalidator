@@ -7,6 +7,8 @@ import edu.holycross.shot.scm._
 import org.scalatest.FlatSpec
 
 
+//import wvlet.log._
+
 class DseValidatorSpec extends FlatSpec {
 
 

@@ -9,7 +9,7 @@ import edu.holycross.shot.scm._
 
 
 import wvlet.log._
-import wvlet.log.LogFormatter.SourceCodeLogFormatter
+//import wvlet.log.LogFormatter.SourceCodeLogFormatter
 
 import scala.scalajs.js.annotation._
 

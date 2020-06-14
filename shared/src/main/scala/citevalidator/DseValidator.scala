@@ -11,7 +11,7 @@ import edu.holycross.shot.scm._
 
 
 import wvlet.log._
-import wvlet.log.LogFormatter.SourceCodeLogFormatter
+//import wvlet.log.LogFormatter.SourceCodeLogFormatter
 
 
 import scala.scalajs.js.annotation._
@@ -21,7 +21,7 @@ import scala.scalajs.js.annotation._
     basePath: String = "/project/homer/pyramidal/deepzoom/",
     ictUrl: String = "http://www.homermultitext.org/ict2?"
   ) extends CiteValidator[DsePassage] with LogSupport {
-  Logger.setDefaultLogLevel(LogLevel.INFO)
+  //Logger.setDefaultLogLevel(LogLevel.INFO)
 
   def label : String = "Validate DsePassage relations"
 
