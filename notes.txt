@@ -1,0 +1,4 @@
+
+Distinguish type parameter of TestResult:
+
+ res.head match { case tr: TestResult[DsePassage] => true; case _ => false }
