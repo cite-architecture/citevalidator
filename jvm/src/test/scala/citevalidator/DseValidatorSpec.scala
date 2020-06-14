@@ -9,24 +9,18 @@ import org.scalatest.FlatSpec
 
 class DseValidatorSpec extends FlatSpec {
 
-  // Build a CiteLibrary from an EditorsRepo for test data
-  /*
-  val readerMap = Map.empty[String, Vector[MidMarkupReader]]
 
-  val repo = EditorsRepo("jvm/src/test/resources/chantsample",
-  readerMap)
-  val lib1 = repo.library
-  */
-  //val hmtLib = CiteLibrarySource.fromFile("hmt_w_commentary.cex")
+  val lib1 = CiteLibrarySource.fromFile("jvm/src/test/resources/csample.cex")
 
-  "A DseValidator" should "find a list of text-bearing surfaces in a library" in pending/* {
+  "A DseValidator" should "find a list of text-bearing surfaces in a library" in  {
     val dseValidator = DseValidator(lib1)
     val surfaces = dseValidator.tbs
-    println("FOUND " + surfaces.size)
-    println(surfaces.mkString("\n"))
-  }*/
+    val expectedSurfaces = Vector(Cite2Urn("urn:cite2:ecod:eins121pages.v1:21"))
 
-  it should "validate surfaces supplied in a Vector" in pending /*{
+    assert(expectedSurfaces == surfaces)
+  }
+
+  it should "validate surfaces supplied in a Vector" in {
     val pg = Cite2Urn("urn:cite2:ecod:eins121pages.v1:21")
     val pageList = Vector(pg)
     val dseValidator = DseValidator(lib1)
@@ -35,7 +29,7 @@ class DseValidatorSpec extends FlatSpec {
     println(rslts)
     // and summary should link to an ICT
     println("WITH SUMMARIES:\n" + rslts.map(_.summary).mkString("\n"))
-  }*/
+  }
 
 
 

@@ -9,23 +9,20 @@ import org.scalatest.FlatSpec
 
 class DseVerificationSpec extends FlatSpec {
 
-  // Build a CiteLibrary from an EditorsRepo for test data
 
-  /*
-  val readerMap = Map.empty[String, Vector[MidMarkupReader]]
+  val lib1 = CiteLibrarySource.fromFile("jvm/src/test/resources/csample.cex")
 
-  val repo = EditorsRepo("jvm/src/test/resources/chantsample",
-  readerMap)
-  val lib1 = repo.library
-*/
-
-  "A DseValidator" should "compose a markdown string for visual verification using the ICT tool" in pending /*{
+  "A DseValidator" should "compose a markdown string for visual verification using the ICT tool" in {
     val pg = Cite2Urn("urn:cite2:ecod:eins121pages.v1:21")
     val pageList = Vector(pg)
     val dseValidator = DseValidator(lib1)
 
-    println(dseValidator.verify(pg))
-  }*/
+    val expected = "http://www.homermultitext.org/ict2?urn=urn:cite2:citeecod:einsiedeln121imgs.v1:sbe_0121_21@0.4224,0.6753,0.2902,0.06050&urn=urn:cite2:citeecod:einsiedeln121imgs.v1:sbe_0121_21@0.05747,0.6569,0.6769,0.2052"
+
+    val actual = dseValidator.verify(pg)
+
+    assert( actual == expected)
+  }
 
 
 }
