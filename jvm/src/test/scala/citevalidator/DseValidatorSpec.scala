@@ -27,13 +27,22 @@ class DseValidatorSpec extends FlatSpec {
     val pageList = Vector(pg)
     val dseValidator = DseValidator(lib1)
     val rslts = dseValidator.validate(pageList)
-    println("Validated " + pageList.size + " surfaces, and got " + rslts.size + " results.")
-    println(rslts)
+
+
+    //println("Validated " + pageList.size + " surfaces, and got " + rslts.size + " results.")
+    //println(rslts)
     // and summary should link to an ICT
-    println("WITH SUMMARIES:\n" + rslts.map(_.summary).mkString("\n"))
+    //println("WITH SUMMARIES:\n" + rslts.map(_.summary).mkString("\n"))
+    //println(rslts.head.summary)
   }
 
-
+  it should "format a list of DSE validation results as markdown" in {
+    val pg = Cite2Urn("urn:cite2:ecod:eins121pages.v1:21")
+    val pageList = Vector(pg)
+    val dseValidator = DseValidator(lib1)
+    val rslts = dseValidator.validate(pageList)
+    println("MD:\n" + dseValidator.markdownResults(rslts))
+  }
 
   it should "validate a range of surfaces" in pending /*{
     val pageList = Vector(

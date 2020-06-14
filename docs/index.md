@@ -3,7 +3,7 @@ title: HCMID validator library
 layout: page
 ---
 
-**Library version 1.0.0**
+**Library version 1.0.1**
 
 ## The `CiteValidator` trait
 
@@ -17,5 +17,5 @@ The results of their validation are also type parameterized.  Results of differe
 
 ## Validation results
 
-- `TestResult`
+- `TestResult`.  See an [example with DSE validation](./results/)
 - `TestResultGroup`

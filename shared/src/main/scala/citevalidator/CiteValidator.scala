@@ -4,7 +4,6 @@ import edu.holycross.shot.cite._
 import edu.holycross.shot.ohco2._
 import edu.holycross.shot.citerelation._
 import edu.holycross.shot.citeobj._
-//import edu.holycross.shot.dse._
 import edu.holycross.shot.scm._
 
 
@@ -25,33 +24,14 @@ trait CiteValidator[+T]  extends LogSupport {
     surfaces.flatMap(validate(_))
   }
 
+  /** Concatenate result summaries as a Markdown list.
+  */
   def markdownResults[T](results: Vector[TestResult[T]]) : String = {
     val markdownList = results.map(r => "- " + r.summary)
     markdownList.mkString("\n")
   }
 
-  /** Lookup list of MidMarkupReader's by identifying String.
-  *
-  * @readerName Name of class implementing MidMarkupReader trait.
+  /** Markdown source for human verification.*/
+  def verify(surface: Cite2Urn) : String
 
-  def readersForString(readerName: String): Vector[MidMarkupReader] = {
-    if (readerMap.keySet.contains(readerName)){
-      readerMap(readerName)
-    } else {
-      throw (new Exception(s"${readerName} is not a recognized MidReader in this project."))
-    }
-  }
-*/
-  /** Lookup MidMarkupReader class by identifying String.
-  *
-  * @orthoName Name of class implementing MidOrthography trait.
-
-  def orthoForString(orthoName: String): MidOrthography = {
-    if (orthoMap.keySet.contains(orthoName)){
-      orthoMap(orthoName)
-    } else {
-      throw (new Exception(s"${orthoName} is not a recognized Orthography in this project."))
-    }
-  }
-*/
 }

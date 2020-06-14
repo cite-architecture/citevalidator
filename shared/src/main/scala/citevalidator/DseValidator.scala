@@ -66,9 +66,12 @@ import scala.scalajs.js.annotation._
       debug(s"Text ${dsePsg.passage} on " + surface + ": " + matches.size + " in corpus")
 
       val testRes = matches.size match {
-        case 0 => TestResult(false, dsePsg.markdown(baseUrl, basePath) + "Indexed passage " + dsePsg.passage + " **NOT FOUND** in text corpus."  , dsePsg)
+        case 0 => TestResult(false, "DSE " + dsePsg.label + ". Indexed passage " + dsePsg.passage + " **NOT FOUND** in text corpus."  , dsePsg)
+
+        //TestResult(false, dsePsg.markdown(baseUrl, basePath) + "Indexed passage " + dsePsg.passage + " **NOT FOUND** in text corpus."  , dsePsg)
         case  _ => {
-          TestResult(true,  dsePsg.markdown(baseUrl, basePath) + "Text passage " + dsePsg.passage + " found in corpus. " , dsePsg)
+          //TestResult(true,  dsePsg.markdown(baseUrl, basePath) + "Text passage " + dsePsg.passage + " found in corpus. " , dsePsg)
+          TestResult(true, "DSE " + dsePsg.label + ". Text passage " + dsePsg.passage + " found in corpus. " , dsePsg)
         }
       }
       testRes
@@ -82,7 +85,9 @@ import scala.scalajs.js.annotation._
   def verify(surface: Cite2Urn) : String = {
     val surfaceDse = dsev.passages.filter(_.surface == surface)
     val images = surfaceDse.map(dse => "urn=" + dse.imageroi)
-    ictUrl + images.mkString("&")
+    val linkUrl = ictUrl + images.mkString("&")
+    val md = s"## Verification: ${surface.objectComponent}\n\nTo verify that coverage of DSE indexing is complete, use [this link](${linkUrl})\n"
+    md
   }
 
 
