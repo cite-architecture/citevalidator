@@ -15,5 +15,5 @@ Status:  **active development**. [Release notes](releases.md)
 
 ## Documentation
 
-- User guide
+- [User guide](https://cite-architecture.github.io/citevalidator/)
 - API docs
