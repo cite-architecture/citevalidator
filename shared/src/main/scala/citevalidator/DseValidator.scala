@@ -6,7 +6,7 @@ import edu.holycross.shot.citerelation._
 import edu.holycross.shot.citeobj._
 import edu.holycross.shot.dse._
 import edu.holycross.shot.scm._
-
+import edu.holycross.shot.citebinaryimage._
 //import scala.reflect.runtime.universe._
 
 
@@ -16,7 +16,8 @@ import wvlet.log._
 
 import scala.scalajs.js.annotation._
 
-@JSExportAll  case class DseValidator(citeLibrary: CiteLibrary,
+@JSExportAll  case class DseValidator(
+    citeLibrary: CiteLibrary,
     baseUrl : String  = "http://www.homermultitext.org/iipsrv?",
     basePath: String = "/project/homer/pyramidal/deepzoom/",
     ictUrl: String = "http://www.homermultitext.org/ict2?"
@@ -58,24 +59,82 @@ import scala.scalajs.js.annotation._
   def validate(surface: Cite2Urn) : Vector[TestResult[DsePassage]] = {
     info("DSE validate for " + surface + " : start computing DSE...")
     val surfaceDse = dsev.passages.filter(_.surface == surface)
+
     info("Done. DSE validating " + surfaceDse.size + " DSE passages.")
-    for ((dsePsg, count) <- surfaceDse.zipWithIndex) yield {
-      info(s"\t${count + 1}/${surfaceDse.size} ${dsePsg.passage}")
+
+    val ok = filterDsePassages(surfaceDse, true).
+      map(psg =>
+        TestResult(true,  psg.markdown(baseUrl, basePath) + "Text passage " + psg.passage + " found in corpus. " , psg)
+      )
+    val bad = filterDsePassages(surfaceDse, false).
+      map(psg =>
+        TestResult(false, psg.markdown(baseUrl, basePath) + "Indexed passage " + psg.passage + " **NOT FOUND** in text corpus."  , psg)
+      )
+
+    ok ++ bad
+  }
+
+  /** Filter a Vector of DsePassages, keeping or rejecting
+  * passage based on setting of Boolean valid.
+  *
+  * @param dsePassages List of DsePassages to filter.
+  * @param valid If true, keep valid passages.
+  */
+  def filterDsePassages(dsePassages : Vector[DsePassage], valid: Boolean) : Vector[DsePassage] = {
+    val opts = for ((dsePsg, count) <- dsePassages.zipWithIndex) yield {
+      info(s"\t${count + 1}/${dsePassages.size} ${dsePsg.passage}")
       debug("Validating DSE passage " + dsePsg)
       val matches = corpus ~~ dsePsg.passage
-      debug(s"Text ${dsePsg.passage} on " + surface + ": " + matches.size + " in corpus")
+      debug(s"Text ${dsePsg.passage} on " + dsePsg.surface + ": " + matches.size + " in corpus")
 
-      val testRes = matches.size match {
-        case 0 => TestResult(false, "DSE " + dsePsg.label + ". Indexed passage " + dsePsg.passage + " **NOT FOUND** in text corpus."  , dsePsg)
-
-        //TestResult(false, dsePsg.markdown(baseUrl, basePath) + "Indexed passage " + dsePsg.passage + " **NOT FOUND** in text corpus."  , dsePsg)
-        case  _ => {
-          //TestResult(true,  dsePsg.markdown(baseUrl, basePath) + "Text passage " + dsePsg.passage + " found in corpus. " , dsePsg)
-          TestResult(true, "DSE " + dsePsg.label + ". Text passage " + dsePsg.passage + " found in corpus. " , dsePsg)
+      val checked = matches.size match {
+        case 0 => {
+          valid match {
+            case true => None
+            case false => Some(dsePsg)
+          }
+        }
+        case  _ =>  {
+          valid match {
+            case true => Some(dsePsg)
+            case false => None
+          }
         }
       }
-      testRes
+      checked
     }
+    opts.flatten
+  }
+
+  /** Compose markdown section on coverage for
+  * required "verify" method.
+  */
+  def coverage(psgs: Vector[DsePassage]): String = {
+    val images = psgs.map(dse => "urn=" + dse.imageroi)
+    val linkUrl = ictUrl + images.mkString("&")
+    s"## Coverage\n\nTo verify that coverage of DSE indexing is complete, use [this link](${linkUrl})\n\n"
+
+  }
+
+  /** Compose markdown section on accuracy for
+  * required "verify" method.
+  */
+  def accuracy(psgs: Vector[DsePassage]): String = {
+    val rows = for (psg <- psgs) yield {
+      val imgPath = PathUtility.expandedPath(psg.imageroi.dropSelector)
+      val fullPath = basePath + imgPath
+      val iiif = IIIFApi(baseUrl,fullPath)
+      val linkedImg = iiif.linkedMarkdownImage(psg.imageroi)
+      linkedImg + "\n" + textContents(psg)
+    }
+    s"## Accuracy of valid passages\n\n" + rows.mkString("\n\n---\n\n")
+  }
+
+
+
+  def textContents(psg: DsePassage): String = {
+    val subcorpus = citeLibrary.textRepository.get.corpus ~~ psg.passage.dropSubref
+    subcorpus.nodes.map(_.text).mkString(" ")
   }
 
   /** Composes markdown string for visual verification of a surface.
@@ -84,10 +143,11 @@ import scala.scalajs.js.annotation._
   */
   def verify(surface: Cite2Urn) : String = {
     val surfaceDse = dsev.passages.filter(_.surface == surface)
-    val images = surfaceDse.map(dse => "urn=" + dse.imageroi)
-    val linkUrl = ictUrl + images.mkString("&")
-    val md = s"## Verification: ${surface.objectComponent}\n\nTo verify that coverage of DSE indexing is complete, use [this link](${linkUrl})\n"
-    md
+
+    val goodPassages = filterDsePassages(surfaceDse, true)
+    val summary = s"**${goodPassages.size}** valid / ${surfaceDse.size} passages\n\n"
+    val header = s"## Verification: ${surface.objectComponent}\n\n"
+    header + summary + coverage(surfaceDse) + accuracy(goodPassages)
   }
 
 
