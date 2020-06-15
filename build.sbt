@@ -29,15 +29,9 @@ lazy val crossed = crossProject(JSPlatform, JVMPlatform).in(file(".")).
         "edu.holycross.shot" %%% "citeobj" % "7.5.0",
         "edu.holycross.shot" %%% "ohco2" % "10.19.0",
         "edu.holycross.shot" %%% "citerelations" % "2.7.0",
-        "edu.holycross.shot" %%% "dse" % "7.1.0",
+        "edu.holycross.shot" %%% "dse" % "7.1.1",
         "edu.holycross.shot" %%% "citebinaryimage" % "3.2.0",
-
-
-        //"edu.holycross.shot" %%% "histoutils" % "2.3.0",
-        //"edu.holycross.shot.mid" %% "orthography" % "1.0.0",
-
-        // Later version would bring all dependent libs in sync:
-        //"edu.furman.classics" %% "citewriter" % "1.0.2"
+        "edu.holycross.shot" %% "scm" % "7.3.0",
 
       )
     ).
@@ -46,16 +40,8 @@ lazy val crossed = crossProject(JSPlatform, JVMPlatform).in(file(".")).
         "org.scala-js" %% "scalajs-stubs" % "1.0.0" % "provided",
         "com.github.pathikrit" %% "better-files" % "3.5.0",
 
-
-
-
-        "edu.holycross.shot" %% "scm" % "7.3.0",
         "edu.holycross.shot" %% "cex" % "6.5.0",
         "edu.holycross.shot" %% "xmlutils" % "2.0.0",
-
-        // FOR DEBUGGING WITH HMT CONTENT:
-        //"edu.holycross.shot" %% "greek" % "2.4.0",
-        //"org.homermultitext" %% "hmt-textmodel" % "6.0.1"
 
       )
 

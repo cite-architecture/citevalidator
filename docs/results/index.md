@@ -42,11 +42,11 @@ println(dseValidator.markdownResults(bad))
 ```
 >**Successes**: 1
 
-- DSE Passage 0. Text passage urn:cts:chant:massordinary.eins121.text_xml:h007_2.h00.1 found in corpus. 
+- Compare text urn:cts:chant:massordinary.eins121.text_xml:h007_2.h00.1 to image [![Linked to zoomble image](http://www.homermultitext.org/iipsrv?IIIF=/project/homer/pyramidal/deepzoom/citeecod/einsiedeln121imgs/v1/sbe_0121_21.tif/pct:42.24,67.53,29.02,6.05/2000,/0/default.jpg)](http://www.homermultitext.org/ict2/?urn=urn:cite2:citeecod:einsiedeln121imgs.v1:sbe_0121_21@0.4224,0.6753,0.2902,0.06050)Text passage urn:cts:chant:massordinary.eins121.text_xml:h007_2.h00.1 found in corpus. 
 
 >**Failures**: 1
 
-- DSE Passage 1. Indexed passage urn:cts:chant:massordinary.eins121.text_xml:h007_2.h02.1@Mem-h02.1@in **NOT FOUND** in text corpus.
+- Compare text urn:cts:chant:massordinary.eins121.text_xml:h007_2.h02.1@Mem-h02.1@in to image [![Linked to zoomble image](http://www.homermultitext.org/iipsrv?IIIF=/project/homer/pyramidal/deepzoom/citeecod/einsiedeln121imgs/v1/sbe_0121_21.tif/pct:5.747,65.69,67.69,20.52/2000,/0/default.jpg)](http://www.homermultitext.org/ict2/?urn=urn:cite2:citeecod:einsiedeln121imgs.v1:sbe_0121_21@0.05747,0.6569,0.6769,0.2052)Indexed passage urn:cts:chant:massordinary.eins121.text_xml:h007_2.h02.1@Mem-h02.1@in **NOT FOUND** in text corpus.
 
 ## `TestResultGroup`
 
@@ -62,6 +62,13 @@ dseValidator.verify(pg)
 ```
 >## Verification: 21
 
-To verify that coverage of DSE indexing is complete, use [this link](http://www.homermultitext.org/ict2?urn=urn:cite2:citeecod:einsiedeln121imgs.v1:sbe_0121_21@0.4224,0.6753,0.2902,0.06050&urn=urn:cite2:citeecod:einsiedeln121imgs.v1:sbe_0121_21@0.05747,0.6569,0.6769,0.2052) 
+**1** valid / 2 passages
 
+## Coverage
 
+To verify that coverage of DSE indexing is complete, use [this link](http://www.homermultitext.org/ict2?urn=urn:cite2:citeecod:einsiedeln121imgs.v1:sbe_0121_21@0.4224,0.6753,0.2902,0.06050&urn=urn:cite2:citeecod:einsiedeln121imgs.v1:sbe_0121_21@0.05747,0.6569,0.6769,0.2052)
+
+## Accuracy of valid passages
+
+[![Linked to zoomble image](http://www.homermultitext.org/iipsrv?IIIF=/project/homer/pyramidal/deepzoom/citeecod/einsiedeln121imgs/v1/sbe_0121_21.tif/pct:42.24,67.53,29.02,6.05/2000,/0/default.jpg)](http://www.homermultitext.org/ict2/?urn=urn:cite2:citeecod:einsiedeln121imgs.v1:sbe_0121_21@0.4224,0.6753,0.2902,0.06050)
+<ab n="1" xmlns="http://www.tei-c.org/ns/1.0">DOM PRXIMA</ab>
