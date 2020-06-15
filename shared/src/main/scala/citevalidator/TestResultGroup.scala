@@ -25,12 +25,12 @@ import java.io.PrintWriter
   /** Summary of test results.*/
   def summary: String = {
     "## Summary of results\n\n" +
-    s"Total tests: successes/failures : ${results.size}:  ${successes.size}/${failures.size}"
+    s"Successes/total tests: **${successes.size}/${results.size}**."
   }
 
   /** Format markdown string to report on test results.*/
   def markdown : String = {
-    s"#${title}\n\n" + summary + "\n\n## Details for failed tests\n\n" + failures.map(rslt => rslt.summary).mkString("\n") + "\n\n"
+    s"#${title}\n\n" + summary + s"\n\n## Details for ${failures.size} failed tests\n\n" + failures.map(rslt => "- " + rslt.summary).mkString("\n") + "\n\n"
   }
 
   /** Write report to a local file.

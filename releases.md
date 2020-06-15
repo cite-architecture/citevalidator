@@ -1,5 +1,8 @@
 ## Release notes:  CITE `libraryvalidator`
 
+- **1.1.2**: further String formatting  in `TestResultGroup` output.
+
+- **1.1.1**: corrects some String formatting.
 
 - **1.1.0**: `DseValidator` adds verification of accuracy as well as coverage.
 

@@ -15,7 +15,7 @@ lazy val crossed = crossProject(JSPlatform, JVMPlatform).in(file(".")).
     settings(
       name := "citevalidator",
       organization := "edu.holycross.shot",
-      version := "1.1.0",
+      version := "1.1.2",
       licenses += ("GPL-3.0",url("https://opensource.org/licenses/gpl-3.0.html")),
       resolvers += Resolver.jcenterRepo,
       resolvers += Resolver.bintrayRepo("neelsmith", "maven"),
@@ -62,6 +62,6 @@ lazy val crossed = crossProject(JSPlatform, JVMPlatform).in(file(".")).
         mdocOut := file("docs"),
         mdocExtraArguments := Seq("--no-link-hygiene"),
         mdocVariables := Map(
-          "VERSION" -> "1.1.0"
+          "VERSION" -> "1.1.2"
         )
       )
