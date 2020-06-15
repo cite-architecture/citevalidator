@@ -3,7 +3,7 @@ title: HCMID validator library
 layout: page
 ---
 
-**Library version 1.1.0**
+**Library version 1.1.2**
 
 ## The `CiteValidator` trait
 
