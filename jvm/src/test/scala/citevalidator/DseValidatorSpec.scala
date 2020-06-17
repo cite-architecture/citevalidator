@@ -80,4 +80,10 @@ class DseValidatorSpec extends FlatSpec {
   }
 */
 
+it should "collect the correct number of records" in {
+  val pg = Cite2Urn("urn:cite2:ecod:eins121pages.v1:21")
+  val dseValidator = DseValidator(lib1)
+  val surfaces = dseValidator.tbs
+}
+
 }

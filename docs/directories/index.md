@@ -3,7 +3,7 @@ title: Directory layout
 layout: page
 ---
 
-**Library version 1.1.2**
+**Library version 1.2.0**
 
 The following directories are required to create an `EditorsRepo`.
 

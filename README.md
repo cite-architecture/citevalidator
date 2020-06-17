@@ -5,7 +5,7 @@ Abstractions for validating contents of a CITE library
 
 
 
-## Current version:  1.1.2
+## Current version:  1.2.0
 
 Status:  **active development**. [Release notes](releases.md)
 
@@ -16,4 +16,4 @@ Status:  **active development**. [Release notes](releases.md)
 ## Documentation
 
 - [User guide](https://cite-architecture.github.io/citevalidator/)
-- API docs
+- [API docs](https://cite-architecture.github.io/cite-api-docs/citevalidator/api/edu/holycross/shot/citevalidator/index.html)

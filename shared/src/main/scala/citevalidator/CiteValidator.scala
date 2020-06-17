@@ -13,13 +13,29 @@ import wvlet.log._
 import scala.scalajs.js.annotation._
 
 trait CiteValidator[+T]  extends LogSupport {
+
+  // 4 type-parameterized methods CiteValidator classes must implement
+  // 1.
   /** Label or title for this validator.*/
   def label: String
 
+
+  // 2.
+  /** Validate all contents of a CiteLibrary for type T.*/
   def validate(library: CiteLibrary) : Vector[TestResult[T]]
 
+  // 3.
+  /** Validate all contents of a CiteLibrary related to a physical surface for type T.*/
   def validate(surface: Cite2Urn) : Vector[TestResult[T]]
 
+
+  // 4.
+  /** Markdown source for human verification.*/
+  def verify(surface: Cite2Urn) : String
+
+  /** Validate all contents of a CiteLibrary for type T
+  * related to a Vector of surfaces.
+  */
   def validate(surfaces: Vector[Cite2Urn]) : Vector[TestResult[T]]  = {
     surfaces.flatMap(validate(_))
   }
@@ -30,8 +46,5 @@ trait CiteValidator[+T]  extends LogSupport {
     val markdownList = results.map(r => "- " + r.summary)
     markdownList.mkString("\n")
   }
-
-  /** Markdown source for human verification.*/
-  def verify(surface: Cite2Urn) : String
 
 }

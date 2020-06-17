@@ -1,5 +1,7 @@
 ## Release notes:  CITE `libraryvalidator`
 
+- **1.2.0**: DSE verification sorts passages in document order.
+
 - **1.1.2**: further String formatting  in `TestResultGroup` output.
 
 - **1.1.1**: corrects some String formatting.

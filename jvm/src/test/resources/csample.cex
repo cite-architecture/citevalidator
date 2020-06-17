@@ -68,11 +68,13 @@ urn:cite2:ecod:eins121pages.v1:#urn:cite2:cite:datamodels.v1:tbsmodel#Model of c
 #!citedata
 sequence#urn#rv#label#image
 21#urn:cite2:ecod:eins121pages.v1:21#recto#Page 21 of codex Einsiedeln 121#urn:cite2:citeecod:einsiedeln121imgs.v1:sbe_0121_21
+
 #!ctscatalog
 urn#citationScheme#groupName#workTitle#versionLabel#exemplarLabel#online#lang
 urn:cts:chant:massordinary.eins121.text_xml:#feast,section,part#Chant#Mass chant book#Einsielden 121, text##true#lat
 urn:cts:chant:massordinary.sg359.text_xml:#feast,section,part#Chant#Mass chant book#St. Gallen codex359, text##true#lat
 urn:cts:chant:massordinary.sg359.neumes_xml:#feast,section,part#Chant#Mass chant book#St. Gallen codex359, neumes##true#lat
+
 #!ctsdata
 urn:cts:chant:massordinary.eins121.text_xml:h007_2.h00.1#<ab n="1" xmlns="http://www.tei-c.org/ns/1.0">DOM PRXIMA</ab>
 urn:cts:chant:massordinary.eins121.text_xml:h007_2.h02.1#<ab n="1" xmlns="http://www.tei-c.org/ns/1.0">MEMENTO NOSTRI DOMINE IN BEneplacito populi tui visita nos in salutari tuo ad uidendum in bonitate electorum tuorum in <w>la<unclear>ti</unclear>tia</w> gentis tue ut lauderis cum hereditate tua</ab>
