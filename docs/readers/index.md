@@ -3,4 +3,4 @@ layout: page
 title: Markup readers
 ---
 
-**Library version 1.2.1**
+**Library version 1.2.2**
