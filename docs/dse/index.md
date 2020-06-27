@@ -3,7 +3,7 @@ title: Walk through an example
 layout: page
 ---
 
-**Library version 1.2.2**
+**Library version 1.2.3**
 
 
 
