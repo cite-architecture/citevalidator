@@ -1,5 +1,7 @@
 ## Release notes:  CITE `libraryvalidator`
 
+- **1.2.3**: further bug fixes in `ohco2` library.
+
 - **1.2.2**: bug fixes in libraries.
 
 - **1.2.1**: udpate to `dse` library fixes off-by-one error loading DSE records from triples in local files.

@@ -5,7 +5,7 @@ Abstractions for validating contents of a CITE library
 
 
 
-## Current version:  1.2.2
+## Current version:  1.2.3
 
 Status:  **active development**. [Release notes](releases.md)
 

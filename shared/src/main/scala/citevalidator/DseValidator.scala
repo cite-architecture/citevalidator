@@ -22,14 +22,13 @@ import scala.scalajs.js.annotation._
     basePath: String = "/project/homer/pyramidal/deepzoom/",
     ictUrl: String = "http://www.homermultitext.org/ict2?"
   ) extends CiteValidator[DsePassage] with LogSupport {
-  //Logger.setDefaultLogLevel(LogLevel.INFO)
+    Logger.setDefaultLogLevel(LogLevel.DEBUG)
 
 
   // 4 methods required by CiteValidator.
   // Required by CiteValidator.
   /** Label for CiteValidator.*/
   def label : String = "Validate DsePassage relations"
-
 
   // Required by CiteValidator.
   /** Validate DSE relations page-by-page for an entire library.
@@ -71,7 +70,7 @@ import scala.scalajs.js.annotation._
   */
   def verify(surface: Cite2Urn) : String = {
     val surfaceDse = dsev.passages.filter(_.surface == surface)
-
+    debug("Surface DSE has " + surfaceDse.size + " records.")
     val goodPassages = filterDsePassages(surfaceDse, true)
     val summary = s"**${goodPassages.size}** valid / ${surfaceDse.size} passages\n\n"
     val header = s"## Verification: ${surface.objectComponent}\n\n"
@@ -86,6 +85,19 @@ import scala.scalajs.js.annotation._
 
   /** Library must implement the DSE model in at least one collection.*/
   lazy val dsev = DseVector.fromCiteLibrary(citeLibrary)
+
+  def ordered(psgs: Vector[DsePassage]): Vector[DsePassage] = {
+    val sortedTexts = corpus.sortPassages(psgs.map(_.passage))
+    val records = for (txt <- sortedTexts) yield {
+      val matchedDse = psgs.filter(_.passage == txt)
+      if (matchedDse.size != 1) {
+        None
+      } else {
+        Some(matchedDse.head  )
+      }
+    }
+    records.flatten
+  }
 
   /** Get ordered list of all text-bearing surfaces in the library.
   */
@@ -141,6 +153,8 @@ import scala.scalajs.js.annotation._
   */
   def coverage(psgs: Vector[DsePassage]): String = {
     val images = psgs.map(dse => "urn=" + dse.imageroi)
+
+    debug("in coverage, images has " + images.size + " links.")
     val linkUrl = ictUrl + images.mkString("&")
     s"## Coverage\n\nTo verify that coverage of DSE indexing is complete, use [this link](${linkUrl})\n\n"
 
