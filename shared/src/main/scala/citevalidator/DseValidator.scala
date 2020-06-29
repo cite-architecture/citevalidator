@@ -22,7 +22,7 @@ import scala.scalajs.js.annotation._
     basePath: String = "/project/homer/pyramidal/deepzoom/",
     ictUrl: String = "http://www.homermultitext.org/ict2?"
   ) extends CiteValidator[DsePassage] with LogSupport {
-    Logger.setDefaultLogLevel(LogLevel.DEBUG)
+    //Logger.setDefaultLogLevel(LogLevel.DEBUG)
 
 
   // 4 methods required by CiteValidator.
@@ -164,9 +164,11 @@ import scala.scalajs.js.annotation._
   * required "verify" method.
   */
   def accuracy(psgs: Vector[DsePassage]): String = {
+    debug("Composing ACCURACY report")
     val ordered = corpus.sortPassages(psgs.map(dse => dse.passage))
     val records = for (txt <- ordered) yield {
-      val matchedDse = psgs.filter(dse => dse.passage == txt)
+      val matchedDse = psgs.filter(dse => dse.passage >= txt)
+      debug("MATCHED " + matchedDse + " for " + txt)
       val psg = matchedDse.head
 
       val imgPath = PathUtility.expandedPath(psg.imageroi.dropSelector)
