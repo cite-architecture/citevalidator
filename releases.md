@@ -1,5 +1,7 @@
 ## Release notes:  CITE `libraryvalidator`
 
+- **1.2.4**: fixes a bug in DSE validator when DSE indexing by a containing text node.
+
 - **1.2.3**: further bug fixes in `ohco2` library.
 
 - **1.2.2**: bug fixes in libraries.
